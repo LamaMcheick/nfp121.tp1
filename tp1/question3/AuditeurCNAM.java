@@ -31,6 +31,16 @@ public class AuditeurCNAM {
         this.prenom = prenom;
         this.matricule = matricule;
     }
+    public String pasAccents(String x){
+        
+        String accents="àâäãéèêëîïìöôòõüûùÀÂÄÃÉÈÊËÎÏÌÖÔÒÕÜÛÙ";
+        String paccents="aaaaeeeeiiioooouuuaaaaeeeeiiioooouuu";
+        int l=accents.length();
+        for(int i=0;i<l;i++){
+            x=x.replace(accents.charAt(i),paccents.charAt(i));
+        }
+        return x;
+    }
 
     /**
      * le login au Cnam : 6 premières lettres du nom suivies de la première
@@ -45,8 +55,19 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        String n;
+        String p;
+        n=this.nom.substring(0,Math.min(this.nom.length(),6));
+        p=this.prenom.substring(0,1);
+        n=n.toLowerCase();
+        p=p.toLowerCase();
+        n=pasAccents(n);
+        p=pasAccents(p);
+        n=n.replaceAll("[^a-z]","_");
+        p=p.replaceAll("[^a-z]","_");
+        return n+"_"+p;
     }
+       
 
     /**
      * Lecture du nom de l'auditeur.

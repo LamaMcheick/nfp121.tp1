@@ -145,10 +145,13 @@ public class Square {
         draw();
     }
 
+  
     /*
      * Draw the square with current specifications on screen.
      */
     private void draw() {
+       
+        
         if (isVisible) {
             Canvas canvas = Canvas.getCanvas();
             canvas.draw(this, color, new Rectangle(xPosition, yPosition, size,
@@ -166,4 +169,5 @@ public class Square {
             canvas.erase(this);
         }
     }
+    
 }
